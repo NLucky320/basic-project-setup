@@ -1,0 +1,88 @@
+.container-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* LEFT = IMAGE (updates based on active text slide) */
+.hero-left {
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+
+}
+
+.img-frame {
+    width: 100%;
+    background-size: contain;
+
+    aspect-ratio: 1;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+
+}
+
+
+/* ensure rotation isn’t clipped */
+
+.img-frame.is-active {
+    opacity: 1;
+}
+
+/* RIGHT = TEXT SPLIDE (vertical) */
+.hero-right {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.splide {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.splide__track {
+    width: 100%;
+    height: 100%;
+}
+
+.splide__list {
+    height: 100%;
+}
+
+.splide__slide {
+    height: 60vh;
+    max-width: 674px;
+    display: flex;
+    Flex-direction: column;
+    justify-content: center;
+}
+
+.line-wrap {
+    overflow: hidden;
+}
+
+.line {
+    color: #fff;
+    transition: transform .35s ease, opacity .35s ease;
+}
+
+.line.is-leave {
+    transform: translateY(60%);
+    opacity: 0;
+}
+
+
+
+.splide__arrows,
+.splide__pagination {
+    display: none;
+}

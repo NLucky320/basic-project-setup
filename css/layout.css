@@ -2,14 +2,10 @@
     --100: 100%;
     --px: px;
     --white: white;
-    --black: #000000;
-    --primary: #;
-    --secondary: #;
-    --accent: #;
     --transparent: transparent;
-    --f-p: 'Poppins', sans-serif;
-    --f-s: 'Montserrat', sans-serif;
-    --radius: px;
+    --f-n: "Nunito Sans",
+        sans-serif;
+    --radius: 32px;
     --shadow: 0 px px rgba(0, 0, 0, 0.1);
 
     --transition: all 0.3s ease;
@@ -33,9 +29,6 @@ body {
     font-family: var(--f-p);
     font-size: 14px;
     font-weight: 400;
-    line-height: ;
-    color: var(--);
-    background-color: var(--white);
 }
 
 .main-container {
@@ -52,11 +45,6 @@ ol {
 
 }
 
-img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
 
 
 
@@ -84,29 +72,29 @@ textarea {
 
 .btn {
     display: inline-block;
-    background: var(--primary);
     color: var(--white);
-    padding: 10px 20px;
+    padding: 14px 33px;
     border-radius: var(--radius);
     transition: var(--transition);
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
 }
 
 .btn:hover {
-    background: var(--accent);
+    background: var(--bg-blue);
+}
+
+.button-flex {
+    display: flex;
+    gap: 12px;
 }
 
 .video {
     width: 100%;
     position: relative;
     padding: 0;
-}
-
-
-
-h1 {
-    padding: 0px;
-    margin: 0px;
-    font-size: 0px;
 }
 
 .t-w {
@@ -117,22 +105,48 @@ h1 {
     display: flex;
 }
 
-.sp-top-40 {
-    padding-top: 40px;
+.bg-green {
+    background: #238554;
 }
 
-.sp-bottom-40 {
-    padding-bottom: 40px;
-}
-
-.sp-top-80 {
-    padding-top: 80px;
-}
-
-.sp-bottom-80 {
-    padding-bottom: 80px;
+.bg-blue {
+    background: #121543;
 }
 
 .desktop-hide {
     display: none;
+}
+
+.div-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 90px;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    font-family: "Nunito Sans",
+        sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2em;
+}
+
+p {
+    font-family: "Nunito Sans",
+        sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4em;
+}
+
+.section-hero {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.main-container {
+    padding: 0 !important;
+    max-width: 100% !important;
 }

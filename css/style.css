@@ -1,0 +1,53 @@
+.btn-b-b {
+    border: 1px solid #121543;
+}
+
+.btn-b-g {
+    border: 1px solid #238554;
+}
+
+.btn-b-b:hover {
+    background-color: #121543;
+}
+
+.btn-b-g:hover {
+    background-color: #238554;
+}
+
+.h-p {
+    padding: 38px 0px 18px;
+}
+
+.p-pb {
+    padding-bottom: 43px;
+}
+
+.d-w {
+    max-width: 1372px;
+    padding: 0px;
+}
+
+.mx-auto {
+    margin: 0 auto;
+}
+
+.b-i {
+    width: 11px;
+    height: 13px;
+}
+
+.p-tb {
+    padding: 106px 0px 96px;
+}
+
+.f-g {
+    gap: 51px;
+}
+
+.f-s {
+    gap: 122px;
+}
+
+.f-m {
+    gap: 45px;
+}

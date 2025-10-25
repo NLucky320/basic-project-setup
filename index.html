@@ -2,19 +2,133 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Text Splide</title>
     <link rel="stylesheet" href="./css/layout.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/mobile.css">
+    <link rel="stylesheet" href="./css/splide.css">
+    <!-- <link rel="stylesheet" href="./css/slider.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+
 </head>
 
-<body class="body">
-    <div class="main-container">
+<body>
+    <section class="section-hero  main-container" id="hero">
+        <div class="container-hero div-flex mx-auto t-w d-w">
+            <!-- LEFT: IMAGE that updates with slide -->
+            <div class="hero-left">
+                <div class="img-frame" id="heroImage"></div>
+            </div>
 
-    </div>
+            <!-- RIGHT: TEXT is the Splide slider -->
+            <div class="hero-right">
+                <div class="splide" id="textSplide" aria-label="Vertical Text Slider">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <!-- Each slide carries the image + color it controls -->
+                            <li class="splide__slide" data-img="./images/771884120-iphone-executive-001 1.png"
+                                data-color="#238554">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-1.31.27 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Executive
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">Cenergistic Executive provides your stakeholders with a window to
+                                    view sustainable
+                                    energy savings
+                                    across the entire
+                                    portfolio, with one-touch access to current energy and sustainability data for every
+                                    facility
+                                    monitored.</p>
+                                <div>
+                                    <button class="button-flex btn btn-b-b">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="splide__slide" data-img="./images/GreenX-Laptop-003 1.png" data-color="#121543">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-2.08.05 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Green
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">Available as a mobile app and on your PC, Cenergistic GreenX tracks
+                                    your utility
+                                    meters, interval meters and EMS data to
+                                    pinpoint energy savings opportunities.</p>
+                                <div>
+                                    <button class="button-flex btn btn-b-g">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="splide__slide" data-img="./images/Simulate-Screen-002 1.png"
+                                data-color="#238554">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-2.10.10 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Simulate
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">Our advanced simulation tool allows your team to calibrate
+                                    facilities-based energy
+                                    models around a variety of scenarios,
+                                    quickly, efficiently and accurately, so you can make more informed building
+                                    decisions..</p>
+                                <div><button class="button-flex btn btn-b-b">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button></div>
+                            </li>
+                            <li class="splide__slide" data-img="./images/Measure-Laptop-004 1.png" data-color="#121543">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-2.17.36 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Measure
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">An advanced yet intuitive energy accounting software tool that
+                                    allows your team to
+                                    visualize and validate your energy
+                                    program’s performance without any specialized training or certifications.</p>
+                                <div>
+                                    <button class="button-flex btn btn-b-g">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
     <script src="./js/script.js"></script>
+
+
 </body>
 
 </html>
