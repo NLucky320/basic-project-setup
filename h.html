@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cenergistic Products</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+        }
+
+        .stacked-container {
+            background: linear-gradient(135deg, #d4e9d7 0%, #c8e0cb 100%);
+            position: relative;
+            transition: background 0.6s ease;
+        }
+
+        .stacked-container.bg-green {
+            background: #238554;
+        }
+
+        .stacked-container.bg-blue {
+            background: #121543;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: flex-start;
+        }
+
+        .images-sticky {
+            position: sticky;
+            top: 100px;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-slide {
+            position: absolute;
+            width: 100%;
+            max-width: 500px;
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+
+        }
+
+        .image-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 1;
+        }
+
+        .image-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .content-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .content-section {
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px 0;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        .content-section.active {
+            opacity: 1;
+        }
+
+        .content-section.passed {
+            opacity: 0.3;
+        }
+
+        .logo-badge {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 16px;
+        }
+
+        .content-section h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .content-section p {
+            font-size: 1.125rem;
+            color: #4a4a4a;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 2px solid;
+            border-radius: 8px;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .btn-blue {
+            color: #121543;
+            border-color: #121543;
+        }
+
+        .btn-blue:hover {
+            background: #121543;
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .btn-green {
+            color: #238554;
+            border-color: #238554;
+        }
+
+        .btn-green:hover {
+            background: #238554;
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-icon {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 968px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .images-sticky {
+                position: relative;
+                top: 0;
+                height: 400px;
+                order: -1;
+            }
+
+            .image-slide {
+                max-width: 100%;
+            }
+
+            .content-section {
+                min-height: auto;
+                padding: 40px 0;
+            }
+
+            .content-section h3 {
+                font-size: 2rem;
+            }
+
+            .content-section p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .content-section h3 {
+                font-size: 1.75rem;
+            }
+
+            .logo-badge {
+                width: 60px;
+                height: 60px;
+            }
+
+            .images-sticky {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stacked-container bg-green">
+        <div class="content-wrapper">
+            <div class="images-sticky">
+                <div class="image-slide active" data-section="0">
+                    <img src="./images/771884120-iphone-executive-001 1.png" alt="Cenergistic Executive">
+                </div>
+                <div class="image-slide" data-section="1">
+                    <img src="./images/GreenX-Laptop-003 1.png" alt="Cenergistic Green">
+                </div>
+                <div class="image-slide" data-section="2">
+                    <img src="./images/Simulate-Screen-002 1.png" alt="Cenergistic Simulate">
+                </div>
+                <div class="image-slide" data-section="3">
+                    <img src="./images/Measure-Laptop-004 1.png" alt="Cenergistic Measure">
+                </div>
+            </div>
+
+            <div class="content-sections">
+                <div class="content-section active" data-section="0" data-bg="green">
+                    <img src="./images/Screenshot-2025-07-15-at-1.31.27 PM 1.png" alt="Logo" class="logo-badge">
+                    <h3>Cenergistic Executive</h3>
+                    <p>Cenergistic Executive provides your stakeholders with a window to view sustainable energy savings
+                        across the entire portfolio, with one-touch access to current energy and sustainability data for
+                        every facility monitored.</p>
+                    <button class="btn btn-blue">
+                        <span>Learn More</span>
+                        <svg class="btn-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="content-section" data-section="1" data-bg="blue">
+                    <img src="./images/Screenshot-2025-07-15-at-2.08.05 PM 1.png" alt="Logo" class="logo-badge">
+                    <h3>Cenergistic Green</h3>
+                    <p>Available as a mobile app and on your PC, Cenergistic GreenX tracks your utility meters, interval
+                        meters and EMS data to pinpoint energy savings opportunities.</p>
+                    <button class="btn btn-green">
+                        <span>Learn More</span>
+                        <svg class="btn-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="content-section" data-section="2" data-bg="green">
+                    <img src="./images/Screenshot-2025-07-15-at-2.10.10 PM 1.png" alt="Logo" class="logo-badge">
+                    <h3>Cenergistic Simulate</h3>
+                    <p>Our advanced simulation tool allows your team to calibrate facilities-based energy models around
+                        a variety of scenarios, quickly, efficiently and accurately, so you can make more informed
+                        building decisions.</p>
+                    <button class="btn btn-blue">
+                        <span>Learn More</span>
+                        <svg class="btn-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="content-section" data-section="3" data-bg="blue">
+                    <img src="./images/Screenshot-2025-07-15-at-2.17.36 PM 1.png" alt="Logo" class="logo-badge">
+                    <h3>Cenergistic Measure</h3>
+                    <p>An advanced yet intuitive energy accounting software tool that allows your team to visualize and
+                        validate your energy program's performance without any specialized training or certifications.
+                    </p>
+                    <button class="btn btn-green">
+                        <span>Learn More</span>
+                        <svg class="btn-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.stacked-container');
+
+        function handleScroll() {
+            const sections = document.querySelectorAll('.content-section');
+            const images = document.querySelectorAll('.image-slide');
+            let activeIndex = 0;
+
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Check if section has entered the viewport from top
+                if (rect.top <= windowHeight * 0.5) {
+                    activeIndex = index;
+                }
+            });
+
+            // Update all sections and images
+            sections.forEach((section, index) => {
+                if (index === activeIndex) {
+                    section.classList.add('active');
+                    section.classList.remove('passed');
+                } else if (index < activeIndex) {
+                    section.classList.remove('active');
+                    section.classList.add('passed');
+                } else {
+                    section.classList.remove('active');
+                    section.classList.remove('passed');
+                }
+            });
+
+            // Update images
+            images.forEach((img, index) => {
+                if (index === activeIndex) {
+                    img.classList.add('active');
+                } else {
+                    img.classList.remove('active');
+                }
+            });
+
+            // Change background color
+            const bgColor = sections[activeIndex].getAttribute('data-bg');
+            container.className = 'stacked-container bg-' + bgColor;
+        }
+
+        // Throttle scroll events for better performance
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Initial check
+        handleScroll();
+    </script>
+</body>
+
+</html>

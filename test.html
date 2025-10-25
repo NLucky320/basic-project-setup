@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Text Splide</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #2d2d2f;
+            --antique: #d7d1b9;
+            --olive: #697650;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--antique);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 300;
+            line-height: .9;
+            margin: 0;
+        }
+
+        .section-hero {
+            min-height: 100vh;
+            background: var(--olive);
+        }
+
+        .container-hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            max-width: 1920px;
+            margin: 0 auto;
+            padding: 2rem 2rem 2rem 8rem;
+            gap: 4rem;
+        }
+
+        /* LEFT = IMAGE (updates based on active text slide) */
+        .hero-left {
+            width: 48rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-frame {
+            width: 100%;
+            height: 29rem;
+            border-radius: 100vw;
+            background-size: cover;
+            background-position: center;
+            transform: rotate(-16deg);
+            transition: transform .6s cubic-bezier(.165, .84, .44, 1);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, .35);
+        }
+
+        .img-frame.is-active {
+            transform: rotate(0deg);
+        }
+
+        /* RIGHT = TEXT SPLIDE (vertical) */
+        .hero-right {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .splide {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .splide__track {
+            width: 100%;
+            height: 100%;
+        }
+
+        .splide__list {
+            height: 100%;
+        }
+
+        .splide__slide {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: .5rem;
+            padding: 1rem 0;
+        }
+
+        .line-wrap {
+            overflow: hidden;
+        }
+
+        .line {
+            color: #fff;
+            transition: transform .35s ease, opacity .35s ease;
+        }
+
+        .line.is-leave {
+            transform: translateY(60%);
+            opacity: 0;
+        }
+
+        .kicker {
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            font-size: .9rem;
+            opacity: .8;
+        }
+
+        .desc {
+            max-width: 50ch;
+            font-size: 1.05rem;
+            opacity: .9;
+        }
+
+        .splide__arrows,
+        .splide__pagination {
+            display: none;
+        }
+
+        @media (max-width:1200px) {
+            h1 {
+                font-size: 9vw;
+            }
+
+            .container-hero {
+                padding: 2rem 4vw;
+                gap: 2rem;
+            }
+
+            .hero-left {
+                width: 100%;
+            }
+        }
+
+        @media (max-width:991px) {
+            body {
+                font-size: 14px;
+            }
+
+            .container-hero {
+                flex-direction: column;
+                height: auto;
+                padding: 2rem 4vw;
+            }
+
+            .hero-left {
+                order: 2;
+                width: 100%;
+                padding: 1rem 0 3rem;
+            }
+
+            .img-frame {
+                height: 40vh;
+            }
+
+            .hero-right {
+                order: 1;
+                width: 100%;
+                height: auto;
+                padding-top: 3rem;
+            }
+
+            .splide,
+            .splide__slide {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="section-hero" id="hero">
+        <div class="container-hero">
+            <!-- LEFT: IMAGE that updates with slide -->
+            <div class="hero-left">
+                <div class="img-frame" id="heroImage"></div>
+            </div>
+
+            <!-- RIGHT: TEXT is the Splide slider -->
+            <div class="hero-right">
+                <div class="splide" id="textSplide" aria-label="Vertical Text Slider">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <!-- Each slide carries the image + color it controls -->
+                            <li class="splide__slide"
+                                data-img="https://images.unsplash.com/photo-1508766206392-8bd5cf550d1c?w=1200"
+                                data-color="#697650">
+                                <div class="kicker">Motion</div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-a">Dance Like The</h1>
+                                </div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-b">Weight's Lifted</h1>
+                                </div>
+                                <p class="desc">Light, effortless movement that feels natural and free.</p>
+                            </li>
+
+                            <li class="splide__slide"
+                                data-img="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200"
+                                data-color="#8B5A3C">
+                                <div class="kicker">Freedom</div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-a">Move With</h1>
+                                </div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-b">Pure Freedom</h1>
+                                </div>
+                                <p class="desc">Let your body lead—no rules, just rhythm.</p>
+                            </li>
+
+                            <li class="splide__slide"
+                                data-img="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200"
+                                data-color="#4A6FA5">
+                                <div class="kicker">Nature</div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-a">Feel The</h1>
+                                </div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-b">Natural Flow</h1>
+                                </div>
+                                <p class="desc">Breathe in, breathe out—move with the world around you.</p>
+                            </li>
+
+                            <li class="splide__slide"
+                                data-img="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200"
+                                data-color="#7B5E7B">
+                                <div class="kicker">Journey</div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-a">Embrace The</h1>
+                                </div>
+                                <div class="line-wrap">
+                                    <h1 class="line line-b">Wild Journey</h1>
+                                </div>
+                                <p class="desc">Every step tells a story—make it yours.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
+    <script>
+        // Init TEXT-as-Splide (vertical on desktop, horizontal on tablet/mobile)
+        const textSplide = new Splide('#textSplide', {
+            perPage: 1,
+            perMove: 1,
+            direction: 'ttb',
+            height: '60vh',
+            focus: 'center',
+            type: 'loop',
+            arrows: false,
+            pagination: false,
+            speed: 650,
+            dragAngleThreshold: 60,
+            waitForTransition: true,
+            updateOnMove: true,
+            breakpoints: {
+                991: { direction: 'ltr', height: 'auto', focus: 0 }
+            }
+        }).mount();
+
+        const heroImage = document.getElementById('heroImage');
+        const sectionHero = document.getElementById('hero');
+
+        // Helper: apply BG + image + small text leave/enter animation
+        function applySlideState(slide) {
+            if (!slide) return;
+            const img = slide.dataset.img;
+            const color = slide.dataset.color || getComputedStyle(sectionHero).backgroundColor;
+
+            // Background color of the whole hero section
+            sectionHero.style.backgroundColor = color;
+
+            // Update image + pop-in rotation
+            heroImage.style.backgroundImage = `url('${img}')`;
+            heroImage.classList.remove('is-active');
+            // force reflow to restart animation
+            void heroImage.offsetWidth;
+            heroImage.classList.add('is-active');
+
+            // Text micro animation on slide enter
+            const lines = slide.querySelectorAll('.line');
+            lines.forEach(l => {
+                l.classList.add('is-leave');
+                setTimeout(() => l.classList.remove('is-leave'), 180);
+            });
+        }
+
+        // Initial state
+        applySlideState(document.querySelector('.splide__slide.is-active'));
+
+        // Update on move
+        textSplide.on('move', (newIndex) => {
+            const slides = document.querySelectorAll('#textSplide .splide__slide');
+            applySlideState(slides[newIndex % slides.length]);
+        });
+
+        // Wheel navigation on desktop
+        let scrolling = false;
+        document.addEventListener('wheel', (e) => {
+            if (window.innerWidth > 991 && !scrolling) {
+                scrolling = true;
+                e.deltaY < 0 ? textSplide.go('-1') : textSplide.go('+1');
+                setTimeout(() => scrolling = false, 1200);
+            }
+        }, { passive: true });
+    </script>
+</body>
+
+</html>

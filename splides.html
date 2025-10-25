@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vertical Text Splide</title>
+    <link rel="stylesheet" href="./css/layout.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/mobile.css">
+    <link rel="stylesheet" href="./css/splide.css">
+    <!-- <link rel="stylesheet" href="./css/slider.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+
+</head>
+
+<body>
+    <section class="section-hero  main-container" id="hero">
+        <div class="container-hero div-flex mx-auto t-w d-w">
+            <!-- LEFT: IMAGE that updates with slide -->
+            <div class="hero-left">
+                <div class="img-frame" id="heroImage"></div>
+            </div>
+
+            <!-- RIGHT: TEXT is the Splide slider -->
+            <div class="hero-right">
+                <div class="splide" id="textSplide" aria-label="Vertical Text Slider">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <!-- Each slide carries the image + color it controls -->
+                            <li class="splide__slide" data-img="./images/771884120-iphone-executive-001 1.png"
+                                data-color="#238554">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-1.31.27 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Executive
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">Cenergistic Executive provides your stakeholders with a window to
+                                    view sustainable
+                                    energy savings
+                                    across the entire
+                                    portfolio, with one-touch access to current energy and sustainability data for every
+                                    facility
+                                    monitored.</p>
+                                <div>
+                                    <button class="button-flex btn btn-b-b">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="splide__slide" data-img="./images/GreenX-Laptop-003 1.png" data-color="#121543">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-2.08.05 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Green
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">Available as a mobile app and on your PC, Cenergistic GreenX tracks
+                                    your utility
+                                    meters, interval meters and EMS data to
+                                    pinpoint energy savings opportunities.</p>
+                                <div>
+                                    <button class="button-flex btn btn-b-g">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </li>
+                            <li class="splide__slide" data-img="./images/Simulate-Screen-002 1.png"
+                                data-color="#238554">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-2.10.10 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Simulate
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">Our advanced simulation tool allows your team to calibrate
+                                    facilities-based energy
+                                    models around a variety of scenarios,
+                                    quickly, efficiently and accurately, so you can make more informed building
+                                    decisions..</p>
+                                <div><button class="button-flex btn btn-b-b">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button></div>
+                            </li>
+                            <li class="splide__slide" data-img="./images/Measure-Laptop-004 1.png" data-color="#121543">
+                                <div class="kicker"><img src="./images/Screenshot-2025-07-15-at-2.17.36 PM 1.png"
+                                        alt=""></div>
+                                <div class="line-wrap">
+                                    <h3 class="h-p">
+                                        Cenergistic Measure
+                                    </h3>
+                                </div>
+
+                                <p class="desc p-pb">An advanced yet intuitive energy accounting software tool that
+                                    allows your team to
+                                    visualize and validate your energy
+                                    program’s performance without any specialized training or certifications.</p>
+                                <div>
+                                    <button class="button-flex btn btn-b-g">
+                                        <img class="b-i" src="./images/Vector.png" alt="">
+                                        Learn More
+                                    </button>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function () {
+            var textSplide = new Splide('#textSplide', {
+                perPage: 1,
+                perMove: 1,
+                direction: 'ttb',
+                height: '50vh',
+                focus: 'center',
+                type: 'loop',
+                arrows: false,
+                pagination: false,
+                speed: 1200,
+                dragAngleThreshold: 60,
+                waitForTransition: true,
+                updateOnMove: true,
+                breakpoints: {
+                    // Below 992px, completely destroy the slider behavior
+                    991: { destroy: true }
+                }
+            });
+
+            var heroImage = document.getElementById('heroImage');
+            var sectionHero = document.getElementById('hero');
+
+            function applySlideState(slideEl) {
+                if (!slideEl || !heroImage || !sectionHero) return;
+                var img = slideEl.getAttribute('data-img');
+                var color = slideEl.getAttribute('data-color') || getComputedStyle(sectionHero).backgroundColor;
+                sectionHero.style.backgroundColor = color;
+                heroImage.style.backgroundImage = "url('" + img + "')";
+                heroImage.classList.remove('is-active');
+                void heroImage.offsetWidth;
+                heroImage.classList.add('is-active');
+                var lines = slideEl.querySelectorAll('.line');
+                for (var i = 0; i < lines.length; i++) {
+                    lines[i].classList.add('is-leave');
+                    (function (line) { setTimeout(function () { line.classList.remove('is-leave'); }, 180); })(lines[i]);
+                }
+            }
+
+            function getActiveSlideEl() {
+                try {
+                    var Slides = textSplide.Components && textSplide.Components.Slides;
+                    if (Slides && Slides.getAt) {
+                        var idx = textSplide.index;
+                        var slideObj = Slides.getAt(idx);
+                        if (slideObj && slideObj.slide) return slideObj.slide;
+                    }
+                } catch (e) { }
+                return document.querySelector('#textSplide .splide__slide.is-active');
+            }
+
+            // Mount for desktop/tablet
+            if (window.innerWidth > 991) {
+                textSplide.on('mounted', function () { applySlideState(getActiveSlideEl()); });
+                textSplide.on('move', function () { applySlideState(getActiveSlideEl()); });
+                textSplide.on('moved', function () { applySlideState(getActiveSlideEl()); });
+                textSplide.on('active', function () { applySlideState(getActiveSlideEl()); });
+                textSplide.mount();
+
+                // Wheel navigation (desktop only)
+                var scrolling = false;
+                document.addEventListener('wheel', function (e) {
+                    if (window.innerWidth > 991 && !scrolling) {
+                        scrolling = true;
+                        (e.deltaY < 0) ? textSplide.go('-1') : textSplide.go('+1');
+                        setTimeout(function () { scrolling = false; }, 1200);
+                    }
+                }, { passive: true });
+            }
+
+            // Mobile: show static blocks (text on top, image underneath each)
+            function setupMobileStatic() {
+
+                if (window.innerWidth <= 991) {
+                    var left = document.querySelector('.hero-left');
+                    if (left) left.style.display = 'none';
+
+                    document.querySelectorAll('#textSplide .splide__slide').forEach(function (li) {
+                        if (!li.querySelector('.mobile-img')) {
+                            var color = li.getAttribute('data-color');
+                            if (color) li.style.setProperty('--block', color);
+                            var src = li.getAttribute('data-img');
+                            var img = document.createElement('img');
+                            img.src = src;
+                            img.alt = '';
+                            img.className = 'mobile-img';
+                            li.appendChild(img);
+                        }
+                    });
+                    // Neutralize any desktop background color swapping
+                    if (sectionHero) {
+                        var first = document.querySelector('#textSplide .splide__slide');
+                        var color = (first && first.getAttribute('data-color')) || '#121543';
+                        sectionHero.style.backgroundColor = color;
+                    }
+                }
+            }
+            setupMobileStatic();
+            window.addEventListener('resize', setupMobileStatic);
+        });
+    </script>
+
+
+</body>
+
+</html>

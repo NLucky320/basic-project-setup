@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cenergistic Vertical Slider</title>
+
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/mobile.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Nunito Sans", sans-serif;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+            overflow: hidden;
+        }
+
+        .slide-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1400px;
+            width: 100%;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        .slide-image {
+            flex: 0 0 45%;
+            overflow: hidden;
+            border-radius: 20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .slide.active .slide-image {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            flex: 1;
+            z-index: 2;
+            color: #fff;
+        }
+
+
+        .slide-content>img {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.4s;
+
+        }
+
+        .slide.active .slide-content img {
+            opacity: 1;
+            transform: translateY(0);
+
+        }
+
+        .slide-content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.4s;
+        }
+
+        .slide.active .slide-content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-content button {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.6s;
+        }
+
+        .slide.active .slide-content button {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Backgrounds from your design */
+        .slide.bg-green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .slide.bg-blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .slide::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .slide-inner {
+                flex-direction: column;
+            }
+
+            .slide-content h3 {
+                font-size: 2rem;
+            }
+
+            .slide-image {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="slider-wrapper">
+
+            <!-- Slide 1 -->
+            <div class="slide bg-green active">
+                <div class="slide-inner">
+                    <div class="slide-image">
+                        <img src="./images/771884120-iphone-executive-001 1.png" alt="Executive" />
+                    </div>
+                    <div class="slide-content">
+                        <img src="./images/Screenshot-2025-07-15-at-1.31.27 PM 1.png" alt="">
+
+                        <p>Cenergistic Executive provides your stakeholders with a window to view sustainable energy
+                            savings
+                            across the entire portfolio.</p>
+                        <button class="button-flex btn btn-b-b">
+                            <img class="b-i" src="./images/Vector.png" alt=""> Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide bg-blue">
+                <div class="slide-inner">
+                    <div class="slide-image">
+                        <img src="./images/GreenX-Laptop-003 1.png" alt="Green" />
+                    </div>
+                    <div class="slide-content">
+                        <img src="./images/Screenshot-2025-07-15-at-2.08.05 PM 1.png" alt="">
+
+                        <p>Available as a mobile app and on your PC, Cenergistic GreenX tracks your utility meters and
+                            EMS data to
+                            pinpoint energy savings opportunities.</p>
+                        <button class="button-flex btn btn-b-g">
+                            <img class="b-i" src="./images/Vector.png" alt=""> Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide bg-green">
+                <div class="slide-inner">
+                    <div class="slide-image">
+                        <img src="./images/Simulate-Screen-002 1.png" alt="Simulate" />
+                    </div>
+                    <div class="slide-content">
+                        <img src="./images/Screenshot-2025-07-15-at-2.10.10 PM 1.png" alt="">
+
+                        <p>Calibrate energy models efficiently around a variety of scenarios to make more informed
+                            building
+                            decisions.</p>
+                        <button class="button-flex btn btn-b-b">
+                            <img class="b-i" src="./images/Vector.png" alt=""> Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide bg-blue">
+                <div class="slide-inner">
+                    <div class="slide-image">
+                        <img src="./images/Measure-Laptop-004 1.png" alt="Measure" />
+                    </div>
+                    <div class="slide-content">
+                        <img src="./images/Screenshot-2025-07-15-at-2.17.36 PM 1.png" alt="">
+                        <p>Visualize and validate your energy program’s performance without specialized training or
+                            certifications.</p>
+                        <button class="button-flex btn btn-b-g">
+                            <img class="b-i" src="./images/Vector.png" alt=""> Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slide");
+        const totalSlides = slides.length;
+        let isAnimating = false;
+
+        function goToSlide(index) {
+            if (isAnimating || index === currentSlide) return;
+            if (index < 0 || index >= totalSlides) return;
+            isAnimating = true;
+
+            slides[currentSlide].classList.remove("active");
+            currentSlide = index;
+            slides[currentSlide].classList.add("active");
+
+            slides.forEach((slide, i) => {
+                if (i < currentSlide) slide.style.transform = "translateY(-100%)";
+                else if (i > currentSlide) slide.style.transform = "translateY(100%)";
+                else slide.style.transform = "translateY(0)";
+            });
+
+            setTimeout(() => (isAnimating = false), 800);
+        }
+
+        // Scroll navigation
+        let scrollTimeout;
+        document.addEventListener(
+            "wheel",
+            (e) => {
+                if (isAnimating) return;
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (e.deltaY > 0) goToSlide(currentSlide + 1);
+                    else goToSlide(currentSlide - 1);
+                }, 50);
+            },
+            { passive: true }
+        );
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowUp" || e.key === "ArrowLeft")
+                goToSlide(currentSlide - 1);
+            else if (e.key === "ArrowDown" || e.key === "ArrowRight")
+                goToSlide(currentSlide + 1);
+        });
+
+        // Touch navigation
+        let touchStartY = 0,
+            touchEndY = 0;
+        document.addEventListener(
+            "touchstart",
+            (e) => {
+                touchStartY = e.changedTouches[0].screenY;
+            },
+            { passive: true }
+        );
+        document.addEventListener(
+            "touchend",
+            (e) => {
+                touchEndY = e.changedTouches[0].screenY;
+                if (touchStartY - touchEndY > 50) goToSlide(currentSlide + 1);
+                else if (touchEndY - touchStartY > 50) goToSlide(currentSlide - 1);
+            },
+            { passive: true }
+        );
+
+        slides.forEach((slide, i) => {
+            if (i > 0) slide.style.transform = "translateY(100%)";
+        });
+    </script>
+</body>
+
+</html>

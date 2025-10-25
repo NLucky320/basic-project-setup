@@ -1,0 +1,258 @@
+/* Arcadia-style Sticky Content Scroller */
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.main-container>div {
+    min-height: 100vh;
+    padding: 0;
+    position: relative;
+}
+
+/* Sticky Container */
+.sticky-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+    min-height: 100vh;
+    max-width: 1392px;
+    margin: 0 auto;
+    padding: 0 20px;
+    align-items: center;
+}
+
+/* Sticky Image Side */
+.sticky-side {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sticky-image-wrapper {
+    width: 100%;
+    max-width: 600px;
+    transition: transform 0.3s ease;
+}
+
+.sticky-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Content Side */
+.content-side {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.content-spacer {
+    width: 100%;
+    padding: 40vh 0;
+}
+
+.content-item {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
+}
+
+/* Preserve existing text styles */
+.content-item h3 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.2em;
+    margin: 0 0 18px 0;
+    color: inherit;
+}
+
+.content-item p {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.4em;
+    margin: 0 0 43px 0;
+    color: inherit;
+}
+
+.content-item img {
+    margin-bottom: 20px;
+    max-width: 200px;
+}
+
+/* Button styles */
+.button-flex {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    padding: 14px 33px;
+    border-radius: 32px;
+    transition: all 0.3s ease;
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+.btn-b-b {
+    border: 1px solid #121543;
+}
+
+.btn-b-g {
+    border: 1px solid #238554;
+}
+
+.btn-b-b:hover {
+    background-color: #121543;
+}
+
+.btn-b-g:hover {
+    background-color: #238554;
+}
+
+.b-i {
+    width: 11px;
+    height: 13px;
+}
+
+/* Background colors */
+.bg-green {
+    background: #238554;
+    color: white;
+}
+
+.bg-blue {
+    background: #121543;
+    color: white;
+}
+
+.t-w {
+    color: white;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 991px) {
+    .sticky-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 40px 20px;
+    }
+
+    .sticky-side {
+        position: relative;
+        top: auto;
+        transform: none;
+        order: -1;
+    }
+
+    .content-side {
+        min-height: auto;
+    }
+
+    .content-spacer {
+        padding: 20px 0;
+    }
+
+    .content-item {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sticky-container {
+        gap: 30px;
+        padding: 30px 15px;
+    }
+
+    .content-item h3 {
+        font-size: 20px;
+    }
+
+    .content-item p {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 15px;
+        padding: 12px 28px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .sticky-container {
+        gap: 20px;
+        padding: 20px 15px;
+    }
+
+    .content-item h3 {
+        font-size: 18px;
+        margin-bottom: 12px;
+    }
+
+    .content-item p {
+        font-size: 15px;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 24px;
+    }
+}
+
+/* Smooth scrolling enhancements */
+* {
+    box-sizing: border-box;
+}
+
+.main-container>div {
+    scroll-snap-align: start;
+}
+
+/* Loading state */
+.content-item {
+    min-height: 300px;
+}
+
+/* Ensure proper layering */
+.sticky-side {
+    z-index: 1;
+}
+
+.content-side {
+    z-index: 2;
+}
