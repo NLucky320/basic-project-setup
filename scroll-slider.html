@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cenergistic Products</title>
+    <title>Cenergistic Products - Splide Style</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -24,33 +29,39 @@
             color: white;
         }
 
-
         .stacked-container.bg-green {
-            background: #238554;
+            background-color: #238554;
         }
 
         .stacked-container.bg-blue {
-            background: #121543;
-        }
-
-        .desktop-hide {
-            display: none;
+            background-color: #121543;
         }
 
         .content-wrapper {
             max-width: 1372px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: flex-start;
+            gap: 90px;
+            align-items: start;
         }
 
         .images-sticky {
             position: sticky;
-            top: 80px;
-            height: 600px;
+            top: 20vh;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 40px;
+        }
+
+        .image-frame {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -58,15 +69,19 @@
 
         .image-slide {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 500px;
+            height: 100%;
             opacity: 0;
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition: opacity 0.6s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .image-slide.active {
             opacity: 1;
-            transform: scale(1);
             z-index: 1;
         }
 
@@ -75,25 +90,28 @@
             max-height: 100%;
             width: auto;
             height: auto;
-            display: block;
             object-fit: contain;
+            display: block;
         }
 
         .content-sections {
             display: flex;
             flex-direction: column;
             gap: 0;
+            padding-right: 40px;
         }
 
         .content-section {
-            min-height: 600px;
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 80px 0;
             opacity: 0.3;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.6s ease-in-out;
         }
+
+
 
         .content-section.active {
             opacity: 1;
@@ -101,14 +119,22 @@
 
         .content-section.passed {
             opacity: 0.3;
-            transition: opacity 0.6s ease-in-out;
+        }
+
+        .desktop-hide {
+            display: none;
         }
 
         .kicker {
             margin-bottom: 10px;
         }
 
-
+        .logo-badge {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
 
         .content-section h3 {
             font-family: "Nunito Sans", sans-serif;
@@ -128,6 +154,7 @@
             line-height: 1.4em;
             margin: 0;
             padding-bottom: 43px;
+            max-width: 600px;
         }
 
         .btn {
@@ -149,14 +176,12 @@
         }
 
         .btn-blue {
-
             border: 1px solid #121543;
         }
 
         .btn-blue:hover {
             background-color: #121543;
         }
-
 
         .btn-green {
             border: 1px solid #238554;
@@ -173,7 +198,7 @@
         }
 
         .btn:hover .btn-icon {
-            transform: translateX(4px);
+            transform: translateX(2px);
         }
 
         /* Mobile Styles */
@@ -242,7 +267,9 @@
                 padding: 12px 24px;
             }
 
-
+            .logo-badge {
+                height: 50px;
+            }
 
             .stacked-container {
                 background: transparent !important;
@@ -254,7 +281,9 @@
                 font-size: 18px;
             }
 
-
+            .logo-badge {
+                height: 45px;
+            }
         }
     </style>
 </head>
@@ -262,32 +291,36 @@
 <body>
     <div class="stacked-container bg-green">
         <div class="content-wrapper">
-            <div class="images-sticky mobile-hide ">
-                <div class="image-slide active" data-section="0">
-                    <img src="./images/771884120-iphone-executive-001 1.png" alt="Cenergistic Executive">
-                </div>
-                <div class="image-slide" data-section="1">
-                    <img src="./images/GreenX-Laptop-003 1.png" alt="Cenergistic Green">
-                </div>
-                <div class="image-slide" data-section="2">
-                    <img src="./images/Simulate-Screen-002 1.png" alt="Cenergistic Simulate">
-                </div>
-                <div class="image-slide" data-section="3">
-                    <img src="./images/Measure-Laptop-004 1.png" alt="Cenergistic Measure">
+            <div class="images-sticky">
+                <div class="image-frame">
+                    <div class="image-slide active" data-section="0">
+                        <img src="./images/771884120-iphone-executive-001 1.png" alt="Cenergistic Executive">
+                    </div>
+                    <div class="image-slide" data-section="1">
+                        <img src="./images/GreenX-Laptop-003 1.png" alt="Cenergistic Green">
+                    </div>
+                    <div class="image-slide" data-section="2">
+                        <img src="./images/Simulate-Screen-002 1.png" alt="Cenergistic Simulate">
+                    </div>
+                    <div class="image-slide" data-section="3">
+                        <img src="./images/Measure-Laptop-004 1.png" alt="Cenergistic Measure">
+                    </div>
                 </div>
             </div>
 
             <div class="content-sections">
                 <div class="content-section active" data-section="0" data-bg="green">
                     <div class="kicker">
-                        <img src="./images/Screenshot-2025-07-15-at-1.31.27 PM 1.png" alt="Logo" class="logo-badge">
+                        <img src="./images/Screenshot-2025-07-15-at-1.31.27 PM 1.png" alt="Logo" class="logo-badge">
                     </div>
                     <h3>Cenergistic Executive</h3>
                     <p>Cenergistic Executive provides your stakeholders with a window to view sustainable energy savings
                         across the entire portfolio, with one-touch access to current energy and sustainability data for
                         every facility monitored.</p>
                     <button class="btn btn-blue">
-                        <img class="b-i" src="./images/Vector.png" alt="">
+                        <img class="btn-icon"
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 13' fill='white'%3E%3Cpath d='M1 1L10 6.5L1 12' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"
+                            alt="">
                         Learn More
                     </button>
                     <img src="./images/771884120-iphone-executive-001 1.png" alt="Cenergistic Executive"
@@ -296,13 +329,15 @@
 
                 <div class="content-section" data-section="1" data-bg="blue">
                     <div class="kicker">
-                        <img src="./images/Screenshot-2025-07-15-at-2.08.05 PM 1.png" alt="Logo" class="logo-badge">
+                        <img src="./images/Screenshot-2025-07-15-at-2.08.05 PM 1.png" alt="Logo" class="logo-badge">
                     </div>
                     <h3>Cenergistic Green</h3>
                     <p>Available as a mobile app and on your PC, Cenergistic GreenX tracks your utility meters, interval
                         meters and EMS data to pinpoint energy savings opportunities.</p>
                     <button class="btn btn-green">
-                        <img class="b-i" src="./images/Vector.png" alt="">
+                        <img class="btn-icon"
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 13' fill='white'%3E%3Cpath d='M1 1L10 6.5L1 12' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"
+                            alt="">
                         Learn More
                     </button>
                     <img src="./images/GreenX-Laptop-003 1.png" alt="Cenergistic Green" class="mobile-img desktop-hide">
@@ -310,14 +345,16 @@
 
                 <div class="content-section" data-section="2" data-bg="green">
                     <div class="kicker">
-                        <img src="./images/Screenshot-2025-07-15-at-2.10.10 PM 1.png" alt="Logo" class="logo-badge">
+                        <img src="./images/Screenshot-2025-07-15-at-2.10.10 PM 1.png" alt="Logo" class="logo-badge">
                     </div>
                     <h3>Cenergistic Simulate</h3>
                     <p>Our advanced simulation tool allows your team to calibrate facilities-based energy models around
                         a variety of scenarios, quickly, efficiently and accurately, so you can make more informed
                         building decisions.</p>
                     <button class="btn btn-blue">
-                        <img class="b-i" src="./images/Vector.png" alt="">
+                        <img class="btn-icon"
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 13' fill='white'%3E%3Cpath d='M1 1L10 6.5L1 12' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"
+                            alt="">
                         Learn More
                     </button>
                     <img src="./images/Simulate-Screen-002 1.png" alt="Cenergistic Simulate"
@@ -326,14 +363,16 @@
 
                 <div class="content-section" data-section="3" data-bg="blue">
                     <div class="kicker">
-                        <img src="./images/Screenshot-2025-07-15-at-2.17.36 PM 1.png" alt="Logo" class="logo-badge">
+                        <img src="./images/Screenshot-2025-07-15-at-2.17.36 PM 1.png" alt="Logo" class="logo-badge">
                     </div>
                     <h3>Cenergistic Measure</h3>
                     <p>An advanced yet intuitive energy accounting software tool that allows your team to visualize and
                         validate your energy program's performance without any specialized training or certifications.
                     </p>
                     <button class="btn btn-green">
-                        <img class="b-i" src="./images/Vector.png" alt="">
+                        <img class="btn-icon"
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 13' fill='white'%3E%3Cpath d='M1 1L10 6.5L1 12' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"
+                            alt="">
                         Learn More
                     </button>
                     <img src="./images/Measure-Laptop-004 1.png" alt="Cenergistic Measure"
@@ -347,6 +386,10 @@
         const container = document.querySelector('.stacked-container');
 
         function handleScroll() {
+            if (window.innerWidth <= 991) {
+                return;
+            }
+
             const sections = document.querySelectorAll('.content-section');
             const images = document.querySelectorAll('.image-slide');
             let activeIndex = 0;
@@ -355,13 +398,11 @@
                 const rect = section.getBoundingClientRect();
                 const windowHeight = window.innerHeight;
 
-                // Check if section has entered the viewport from top
-                if (rect.top <= windowHeight * 0.5) {
+                if (rect.top <= windowHeight * 0.5 && rect.bottom >= windowHeight * 0.5) {
                     activeIndex = index;
                 }
             });
 
-            // Update all sections and images
             sections.forEach((section, index) => {
                 if (index === activeIndex) {
                     section.classList.add('active');
@@ -375,7 +416,6 @@
                 }
             });
 
-            // Update images
             images.forEach((img, index) => {
                 if (index === activeIndex) {
                     img.classList.add('active');
@@ -384,12 +424,10 @@
                 }
             });
 
-            // Change background color
             const bgColor = sections[activeIndex].getAttribute('data-bg');
             container.className = 'stacked-container bg-' + bgColor;
         }
 
-        // Throttle scroll events for better performance
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
@@ -399,12 +437,12 @@
                 });
                 ticking = true;
             }
-
         });
+
         window.addEventListener('resize', () => {
             handleScroll();
         });
-        // Initial check
+
         handleScroll();
     </script>
 </body>
