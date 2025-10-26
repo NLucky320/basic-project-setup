@@ -401,9 +401,7 @@
             }
 
         });
-        if (rect.top <= windowHeight * 0.5 || (index === sections.length - 1 && rect.top <= windowHeight * 0.8)) {
-            activeIndex = index;
-        }
+
         window.addEventListener('resize', () => {
             handleScroll();
         });
