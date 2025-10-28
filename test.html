@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vertical Text Splide</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cenergistic Scroll</title>
+
     <style>
         * {
             margin: 0;
@@ -14,323 +13,374 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --black: #2d2d2f;
-            --antique: #d7d1b9;
-            --olive: #697650;
-        }
-
         body {
-            background-color: var(--black);
-            color: var(--antique);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: "Nunito Sans", sans-serif;
+
         }
 
-        h1 {
-            font-size: 5rem;
-            font-weight: 300;
-            line-height: .9;
-            margin: 0;
-        }
-
-        .section-hero {
-            min-height: 100vh;
-            background: var(--olive);
-        }
-
-        .container-hero {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100vh;
-            max-width: 1920px;
-            margin: 0 auto;
-            padding: 2rem 2rem 2rem 8rem;
-            gap: 4rem;
-        }
-
-        /* LEFT = IMAGE (updates based on active text slide) */
-        .hero-left {
-            width: 48rem;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .img-frame {
+        /* Main scroll section container */
+        .stacked-container {
             width: 100%;
-            height: 29rem;
-            border-radius: 100vw;
-            background-size: cover;
-            background-position: center;
-            transform: rotate(-16deg);
-            transition: transform .6s cubic-bezier(.165, .84, .44, 1);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, .35);
+            height: 626px;
+            overflow-y: scroll;
+            /* keeps scroll behavior inside this section */
+            position: relative;
+            background: #238554;
+            transition: background-color 0.6s ease-in-out;
+            color: white;
         }
 
-        .img-frame.is-active {
-            transform: rotate(0deg);
-        }
-
-        /* RIGHT = TEXT SPLIDE (vertical) */
-        .hero-right {
-            flex: 1;
-            height: 100%;
-            display: flex;
-            align-items: center;
-        }
-
-        .splide {
-            width: 100%;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .splide__track {
-            width: 100%;
-            height: 100%;
-        }
-
-        .splide__list {
-            height: 100%;
-        }
-
-        .splide__slide {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: .5rem;
-            padding: 1rem 0;
-        }
-
-        .line-wrap {
-            overflow: hidden;
-        }
-
-        .line {
-            color: #fff;
-            transition: transform .35s ease, opacity .35s ease;
-        }
-
-        .line.is-leave {
-            transform: translateY(60%);
-            opacity: 0;
-        }
-
-        .kicker {
-            letter-spacing: .25em;
-            text-transform: uppercase;
-            font-size: .9rem;
-            opacity: .8;
-        }
-
-        .desc {
-            max-width: 50ch;
-            font-size: 1.05rem;
-            opacity: .9;
-        }
-
-        .splide__arrows,
-        .splide__pagination {
+        .desktop-hide {
             display: none;
         }
 
-        @media (max-width:1200px) {
-            h1 {
-                font-size: 9vw;
-            }
-
-            .container-hero {
-                padding: 2rem 4vw;
-                gap: 2rem;
-            }
-
-            .hero-left {
-                width: 100%;
-            }
+        .stacked-container.bg-green {
+            background: #238554;
         }
 
-        @media (max-width:991px) {
-            body {
-                font-size: 14px;
-            }
+        .stacked-container.bg-blue {
+            background: #121543;
+        }
 
-            .container-hero {
-                flex-direction: column;
-                height: auto;
-                padding: 2rem 4vw;
-            }
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: flex-start;
+            gap: 60px;
+            padding: 60px;
+            position: relative;
+        }
 
-            .hero-left {
-                order: 2;
-                width: 100%;
-                padding: 1rem 0 3rem;
-            }
+        .images-sticky {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: visible;
+        }
 
-            .img-frame {
-                height: 40vh;
-            }
+        .image-slide {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            width: 100%;
+            max-width: 600px;
+        }
 
-            .hero-right {
-                order: 1;
-                width: 100%;
-                height: auto;
-                padding-top: 3rem;
-            }
+        .image-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
 
-            .splide,
-            .splide__slide {
-                height: auto;
-            }
+        .image-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .content-sections {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .content-section {
+            min-height: 626px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0.3;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .content-section.active {
+            opacity: 1;
+        }
+
+        .content-section.passed {
+            opacity: 0.3;
+        }
+
+        .content-section h3 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .content-section p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 32px;
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            width: fit-content;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 
 <body>
-    <header class="section-hero" id="hero">
-        <div class="container-hero">
-            <!-- LEFT: IMAGE that updates with slide -->
-            <div class="hero-left">
-                <div class="img-frame" id="heroImage"></div>
+    <div>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur laboriosam mollitia voluptas sit quisquam
+            dicta commodi quidem velit odio ullam veniam eius exercitationem inventore modi enim, maxime ad impedit
+            illo?</p>
+    </div>
+    <div class="stacked-container bg-green" id="scrollBox">
+        <div class="content-wrapper">
+            <!-- Sticky Image -->
+            <div class="images-sticky mobile-hide ">
+                <div class="image-slide active" data-section="0">
+                    <img src="./images/771884120-iphone-executive-001 1.png" alt="Cenergistic Executive">
+                </div>
+                <div class="image-slide" data-section="1">
+                    <img src="./images/GreenX-Laptop-003 1.png" alt="Cenergistic Green">
+                </div>
+                <div class="image-slide" data-section="2">
+                    <img src="./images/Simulate-Screen-002 1.png" alt="Cenergistic Simulate">
+                </div>
+                <div class="image-slide" data-section="3">
+                    <img src="./images/Measure-Laptop-004 1.png" alt="Cenergistic Measure">
+                </div>
             </div>
 
-            <!-- RIGHT: TEXT is the Splide slider -->
-            <div class="hero-right">
-                <div class="splide" id="textSplide" aria-label="Vertical Text Slider">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <!-- Each slide carries the image + color it controls -->
-                            <li class="splide__slide"
-                                data-img="https://images.unsplash.com/photo-1508766206392-8bd5cf550d1c?w=1200"
-                                data-color="#697650">
-                                <div class="kicker">Motion</div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-a">Dance Like The</h1>
-                                </div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-b">Weight's Lifted</h1>
-                                </div>
-                                <p class="desc">Light, effortless movement that feels natural and free.</p>
-                            </li>
 
-                            <li class="splide__slide"
-                                data-img="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200"
-                                data-color="#8B5A3C">
-                                <div class="kicker">Freedom</div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-a">Move With</h1>
-                                </div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-b">Pure Freedom</h1>
-                                </div>
-                                <p class="desc">Let your body lead—no rules, just rhythm.</p>
-                            </li>
-
-                            <li class="splide__slide"
-                                data-img="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200"
-                                data-color="#4A6FA5">
-                                <div class="kicker">Nature</div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-a">Feel The</h1>
-                                </div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-b">Natural Flow</h1>
-                                </div>
-                                <p class="desc">Breathe in, breathe out—move with the world around you.</p>
-                            </li>
-
-                            <li class="splide__slide"
-                                data-img="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200"
-                                data-color="#7B5E7B">
-                                <div class="kicker">Journey</div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-a">Embrace The</h1>
-                                </div>
-                                <div class="line-wrap">
-                                    <h1 class="line line-b">Wild Journey</h1>
-                                </div>
-                                <p class="desc">Every step tells a story—make it yours.</p>
-                            </li>
-                        </ul>
+            <!-- Text Sections -->
+            <div class="content-sections">
+                <div class="content-section active" data-section="0" data-bg="green">
+                    <div class="kicker">
+                        <img src="./images/Screenshot-2025-07-15-at-1.31.27 PM 1.png" alt="Logo" class="logo-badge">
                     </div>
+                    <h3>Cenergistic Executive</h3>
+                    <p>Cenergistic Executive provides your stakeholders with a window to view sustainable energy
+                        savings
+                        across the entire portfolio, with one-touch access to current energy and sustainability data
+                        for
+                        every facility monitored.</p>
+                    <button class="btn btn-blue">
+                        <img class="b-i" src="./images/Vector.png" alt="">
+                        Learn More
+                    </button>
+                    <img src="./images/771884120-iphone-executive-001 1.png" alt="Cenergistic Executive"
+                        class="mobile-img desktop-hide">
+                </div>
+
+                <div class="content-section" data-section="1" data-bg="blue">
+                    <div class="kicker">
+                        <img src="./images/Screenshot-2025-07-15-at-2.08.05 PM 1.png" alt="Logo" class="logo-badge">
+                    </div>
+                    <h3>Cenergistic Green</h3>
+                    <p>Available as a mobile app and on your PC, Cenergistic GreenX tracks your utility meters,
+                        interval
+                        meters and EMS data to pinpoint energy savings opportunities.</p>
+                    <button class="btn btn-green">
+                        <img class="b-i" src="./images/Vector.png" alt="">
+                        Learn More
+                    </button>
+                    <img src="./images/GreenX-Laptop-003 1.png" alt="Cenergistic Green" class="mobile-img desktop-hide">
+                </div>
+
+                <div class="content-section" data-section="2" data-bg="green">
+                    <div class="kicker">
+                        <img src="./images/Screenshot-2025-07-15-at-2.10.10 PM 1.png" alt="Logo" class="logo-badge">
+                    </div>
+                    <h3>Cenergistic Simulate</h3>
+                    <p>Our advanced simulation tool allows your team to calibrate facilities-based energy models
+                        around
+                        a variety of scenarios, quickly, efficiently and accurately, so you can make more informed
+                        building decisions.</p>
+                    <button class="btn btn-blue">
+                        <img class="b-i" src="./images/Vector.png" alt="">
+                        Learn More
+                    </button>
+                    <img src="./images/Simulate-Screen-002 1.png" alt="Cenergistic Simulate"
+                        class="mobile-img desktop-hide">
+                </div>
+
+                <div class="content-section" data-section="3" data-bg="blue">
+                    <div class="kicker">
+                        <img src="./images/Screenshot-2025-07-15-at-2.17.36 PM 1.png" alt="Logo" class="logo-badge">
+                    </div>
+                    <h3>Cenergistic Measure</h3>
+                    <p>An advanced yet intuitive energy accounting software tool that allows your team to visualize
+                        and
+                        validate your energy program's performance without any specialized training or
+                        certifications.
+                    </p>
+                    <button class="btn btn-green">
+                        <img class="b-i" src="./images/Vector.png" alt="">
+                        Learn More
+                    </button>
+                    <img src="./images/Measure-Laptop-004 1.png" alt="Cenergistic Measure"
+                        class="mobile-img desktop-hide">
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+    <div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae cupiditate doloremque ea quae! Fuga
+            molestiae voluptatum fugit autem quos nobis consequuntur temporibus, sint labore velit amet atque, corporis
+            veniam provident!</p>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
     <script>
-        // Init TEXT-as-Splide (vertical on desktop, horizontal on tablet/mobile)
-        const textSplide = new Splide('#textSplide', {
-            perPage: 1,
-            perMove: 1,
-            direction: 'ttb',
-            height: '60vh',
-            focus: 'center',
-            type: 'loop',
-            arrows: false,
-            pagination: false,
-            speed: 650,
-            dragAngleThreshold: 60,
-            waitForTransition: true,
-            updateOnMove: true,
-            breakpoints: {
-                991: { direction: 'ltr', height: 'auto', focus: 0 }
-            }
-        }).mount();
+        const container = document.getElementById("scrollBox");
 
-        const heroImage = document.getElementById('heroImage');
-        const sectionHero = document.getElementById('hero');
+        container.addEventListener("scroll", () => {
+            const sections = container.querySelectorAll(".content-section");
+            const images = container.querySelectorAll(".image-slide");
+            const containerHeight = container.offsetHeight;
+            let activeIndex = 0;
 
-        // Helper: apply BG + image + small text leave/enter animation
-        function applySlideState(slide) {
-            if (!slide) return;
-            const img = slide.dataset.img;
-            const color = slide.dataset.color || getComputedStyle(sectionHero).backgroundColor;
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                const visibleTop = rect.top - containerRect.top;
 
-            // Background color of the whole hero section
-            sectionHero.style.backgroundColor = color;
-
-            // Update image + pop-in rotation
-            heroImage.style.backgroundImage = `url('${img}')`;
-            heroImage.classList.remove('is-active');
-            // force reflow to restart animation
-            void heroImage.offsetWidth;
-            heroImage.classList.add('is-active');
-
-            // Text micro animation on slide enter
-            const lines = slide.querySelectorAll('.line');
-            lines.forEach(l => {
-                l.classList.add('is-leave');
-                setTimeout(() => l.classList.remove('is-leave'), 180);
+                if (visibleTop < containerHeight * 0.5) {
+                    activeIndex = index;
+                }
             });
-        }
 
-        // Initial state
-        applySlideState(document.querySelector('.splide__slide.is-active'));
+            sections.forEach((section, i) => {
+                section.classList.toggle("active", i === activeIndex);
+                section.classList.toggle("passed", i < activeIndex);
+            });
 
-        // Update on move
-        textSplide.on('move', (newIndex) => {
-            const slides = document.querySelectorAll('#textSplide .splide__slide');
-            applySlideState(slides[newIndex % slides.length]);
+            images.forEach((img, i) => {
+                img.classList.toggle("active", i === activeIndex);
+            });
+
+            const bgColor = sections[activeIndex].dataset.bg;
+            container.className = "stacked-container bg-" + bgColor;
         });
-
-        // Wheel navigation on desktop
-        let scrolling = false;
-        document.addEventListener('wheel', (e) => {
-            if (window.innerWidth > 991 && !scrolling) {
-                scrolling = true;
-                e.deltaY < 0 ? textSplide.go('-1') : textSplide.go('+1');
-                setTimeout(() => scrolling = false, 1200);
-            }
-        }, { passive: true });
     </script>
+
 </body>
 
 </html>
